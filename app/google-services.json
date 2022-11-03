@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1001480170304",
+    "project_id": "email-verification-1b9eb",
+    "storage_bucket": "email-verification-1b9eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001480170304:android:e20a6c78557c312c5628a5",
+        "android_client_info": {
+          "package_name": "org.bnmit.www.emailverification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001480170304-e68i4pvb9e47s92of9mkito8jk7d8huo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvuf1fXNrUzNcVP-i6Zk7SfhYAgZ_aNbA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001480170304-e68i4pvb9e47s92of9mkito8jk7d8huo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

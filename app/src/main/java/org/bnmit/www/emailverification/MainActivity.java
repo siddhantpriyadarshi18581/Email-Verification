@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     TextView signin;
     String str_name, str_pass, str_mail, str_conf_pass, str_phone, str_des;
     ProgressDialog progressDialog;
+
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,14 +73,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Validation();
                 str_phone = "+91" + phone.getText().toString();
-                sendVerificationCode(str_phone);
+
+//                sendVerificationCode(str_phone);
             }
         });
     }
 
-    private void sendVerificationCode(String number) {
-
-    }
+//    private void sendVerificationCode(String number) {
+//
+//    }
 
 
     public void checkButton(View v){
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         str_mail = mail.getText().toString();
         str_pass = pass.getText().toString();
         str_conf_pass = con_pass.getText().toString();
-        str_phone = phone.getText().toString();
+//        str_phone = phone.getText().toString();
         str_des = radioButton.getText().toString();
 
         if (str_name.isEmpty()) {
@@ -101,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             username.requestFocus();
             return;
         }
-        else if (str_phone.isEmpty()) {
+        else if (TextUtils.isEmpty(phone.getText().toString())) {
             phone.setError("Please fill the phone number");
             phone.requestFocus();
             return;
@@ -134,31 +137,35 @@ public class MainActivity extends AppCompatActivity {
             pass.requestFocus();
             return;
         }
-        mAuth.createUserWithEmailAndPassword(str_mail, str_pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(MainActivity.this, "Registered Successfully. Please Check your mail", Toast.LENGTH_SHORT).show();
-//                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//                                startActivity(intent);
-//                                finish();
-                            }
-                            else{
-                                Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+        else{
+            Intent intent1 = new Intent(getApplicationContext(), VerifyOTP.class);
+            intent1.putExtra("phone", str_phone);
+            startActivity(intent1);
+            finish();
+        }
+//        mAuth.createUserWithEmailAndPassword(str_mail, str_pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                if (task.isSuccessful()){
+//                    mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            if (task.isSuccessful()){
+//                                Toast.makeText(MainActivity.this, "Registered Successfully. Please Check your mail", Toast.LENGTH_SHORT).show();
+////                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+////                                startActivity(intent);
+////                                finish();
+//                            }
+//                            else{
+//                                Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//
+//                }
+//            }
+//        });
 
-                }
-            }
-        });
-        Intent intent1 = new Intent(getApplicationContext(), VerifyOTP.class);
-        intent1.putExtra("phone", str_phone);
-        startActivity(intent1);
 
     }
 

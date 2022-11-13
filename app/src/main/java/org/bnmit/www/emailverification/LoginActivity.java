@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         reg_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Registration.class);
                 startActivity(intent);
                 finish();
             }

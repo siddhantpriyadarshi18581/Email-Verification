@@ -30,6 +30,7 @@ public class VerifyOTP extends AppCompatActivity {
     EditText otp;
     FirebaseAuth mAuth;
     String verificationID;
+    String phoneNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class VerifyOTP extends AppCompatActivity {
 
 
 
-        String phoneNo = getIntent().getStringExtra("phone");
+        phoneNo = getIntent().getStringExtra("phone");
 
         SendVerificationCodeToUser(phoneNo);
         verify_btn.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +104,7 @@ public class VerifyOTP extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 Toast.makeText(VerifyOTP.this, "Login is possible", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+//                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
     }
